@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="davaleba_ApplicationForThePurchaseOfACar" name="applicationForThePurchaseOfACar-view"
+          extends="_local">
+        <property name="car" view="_minimal"/>
+        <property name="manager" view="_minimal"/>
+        <property name="counterparty" view="_minimal"/>
+    </view>
+    <view entity="davaleba_Car" name="car-view" extends="_local">
+        <property name="carManufacturers" view="_minimal"/>
+        <property name="carModel" view="_minimal"/>
+        <property name="characteristics" view="_minimal"/>
+    </view>
+    <view entity="davaleba_Counterparty" name="counterparty-view" extends="_local"/>
+    <view entity="davaleba_Counterparty" name="counterparty-view_1" extends="_local"/>
+    <view entity="davaleba_Country" name="country-view" extends="_local">
+        <property name="extUser" view="_minimal"/>
+    </view>
+    <view entity="davaleba_Country" name="country-view_1" extends="_local">
+        <property name="extUser" view="_minimal"/>
+    </view>
+    <view entity="davaleba_Colour" name="colour-view" extends="_local"/>
+    <view entity="davaleba_Colour" name="colour-view_1" extends="_local"/>
+    <view entity="davaleba_Model" name="carModel-view" extends="_local">
+        <property name="carManufacturers" view="_minimal"/>
+        <property name="characteristics" view="_minimal"/>
+    </view>
+    <view entity="davaleba_CarManufacturing" name="carManufacturers-view" extends="_local">
+        <property name="country" view="_minimal"/>
+    </view>
+    <view entity="davaleba_ApplicationForThePurchaseOfACar" name="applicationForThePurchaseOfACar-view_1"
+          extends="_local">
+        <property name="car" view="_minimal"/>
+        <property name="manager" view="_minimal"/>
+        <property name="counterparty" view="_minimal"/>
+    </view>
+</views>

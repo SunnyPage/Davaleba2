@@ -1,0 +1,2 @@
+alter table DAVALEBA_CAR add constraint FK_DAVALEBA_CAR_ON_CAR_MODEL foreign key (CAR_MODEL_ID) references DAVALEBA_MODEL(ID);
+create index IDX_DAVALEBA_CAR_ON_CAR_MODEL on DAVALEBA_CAR (CAR_MODEL_ID);

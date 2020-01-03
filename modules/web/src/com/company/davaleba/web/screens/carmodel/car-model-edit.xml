@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.davaleba.web.screens.carmodel">
+    <data>
+        <instance id="carModelDc"
+                  class="com.company.davaleba.entity.CarModel"
+                  view="carModel-view">
+            <loader/>
+            <collection id="characteristicsDc" property="characteristics"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="carModelDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <groupBox id="characteristicsBox" caption="msg://com.company.davaleba.entity/CarModel.characteristics">
+            <table id="characteristicsTable" dataContainer="characteristicsDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="characteristicsTable.create"/>
+                    <button action="characteristicsTable.edit"/>
+                    <button action="characteristicsTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,1 @@
+drop table DAVALEBA_LEGAL_ENTITY__U87469 if exists cascade ;

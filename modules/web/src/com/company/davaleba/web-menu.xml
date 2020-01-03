@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-davaleba" insertBefore="administration">
+        <item screen="davaleba_ApplicationForThePurchaseOfACar.browse"/>
+        <item screen="davaleba_Car.browse"/>
+        <item screen="davaleba_Counterparty.browse"/>
+        <item screen="davaleba_Country.browse"/>
+        <item screen="davaleba_CarManufacturing.browse"/>
+        <item screen="davaleba_Colour.browse"/>
+        <item screen="davaleba_Model.browse"/>
+    </menu>
+</menu-config>

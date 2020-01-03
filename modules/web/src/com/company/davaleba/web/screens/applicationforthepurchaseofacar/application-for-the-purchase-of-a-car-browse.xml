@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="applicationForThePurchaseOfACarsTable"
+        messagesPack="com.company.davaleba.web.screens.applicationforthepurchaseofacar">
+    <data readOnly="true">
+        <collection id="applicationForThePurchaseOfACarsDc"
+                    class="com.company.davaleba.entity.ApplicationForThePurchaseOfACar"
+                    view="applicationForThePurchaseOfACar-view">
+            <loader id="applicationForThePurchaseOfACarsDl">
+                <query>
+                    <![CDATA[select e from davaleba_ApplicationForThePurchaseOfACar e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="applicationForThePurchaseOfACarsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="applicationForThePurchaseOfACarsTable"
+                dataLoader="applicationForThePurchaseOfACarsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="applicationForThePurchaseOfACarsTable"
+                    width="100%"
+                    dataContainer="applicationForThePurchaseOfACarsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="car"/>
+                <column id="carPaid"/>
+                <column id="price"/>
+                <column id="manager"/>
+                <column id="counterparty"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="applicationForThePurchaseOfACarsTable.create"/>
+                <button id="editBtn" action="applicationForThePurchaseOfACarsTable.edit"/>
+                <button id="removeBtn" action="applicationForThePurchaseOfACarsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="coloursTable"
+        messagesPack="com.company.davaleba.web.screens.colour">
+    <data readOnly="true">
+        <collection id="coloursDc"
+                    class="com.company.davaleba.entity.Colour"
+                    view="colour-view">
+            <loader id="coloursDl">
+                <query>
+                    <![CDATA[select e from davaleba_Colour e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="coloursTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="coloursTable"
+                dataLoader="coloursDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="coloursTable"
+                    width="100%"
+                    dataContainer="coloursDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="code"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="coloursTable.create"/>
+                <button id="editBtn" action="coloursTable.edit"/>
+                <button id="removeBtn" action="coloursTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

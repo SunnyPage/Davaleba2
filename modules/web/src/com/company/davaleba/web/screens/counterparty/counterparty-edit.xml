@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.davaleba.web.screens.counterparty">
+    <data>
+        <instance id="counterpartyDc"
+                  class="com.company.davaleba.entity.Counterparty"
+                  view="counterparty-view_1">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="counterpartyDc">
+            <column width="250px">
+                <textArea id="identificationNumberAndAddressField" property="identificationNumberAndAddress" rows="5"/>
+                <textField id="nameField" property="name"/>
+                <textField id="telephoneField" property="telephone"/>
+                <textField id="firstNameAndLastNameField" property="firstNameAndLastName"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
