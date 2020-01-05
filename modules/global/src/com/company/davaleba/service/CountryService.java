@@ -5,8 +5,10 @@ import com.haulmont.cuba.security.entity.User;
 
 import java.util.UUID;
 
-public interface GetCountryService {
+public interface CountryService {
     String NAME = "davaleba_GetCountryService";
 
     Country GetCountry(UUID userId);
+
+    void SetCountry(UUID userId);
 }

@@ -5,10 +5,7 @@ import com.company.davaleba.entity.ExtUser;
 import com.company.davaleba.service.CountryConfigServiceBean;
 import com.haulmont.chile.core.datatypes.Datatypes;
 import com.haulmont.chile.core.datatypes.FormatStrings;
-import com.haulmont.cuba.core.Persistence;
-import com.haulmont.cuba.core.Query;
-import com.haulmont.cuba.core.Transaction;
-import com.haulmont.cuba.core.TypedQuery;
+import com.haulmont.cuba.core.*;
 import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.core.global.GlobalConfig;
 import com.haulmont.cuba.core.global.UserSessionSource;
@@ -73,7 +70,7 @@ public class CountryBean {
         return null;
     }
 
-    public Country SetCountry(UUID userId)
+    public void SetCountry(UUID userId)
     {
         Transaction tx = persistence.createTransaction();
         ExtUser extUser;
@@ -81,20 +78,29 @@ public class CountryBean {
 
         try
         {
-            Query q = persistence.getEntityManager().createQuery("select u from sec$User u where u.id = ?1");
-            q.setParameter(1, userId);
+            EntityManager em = persistence.getEntityManager();
+            User user = em.find(User.class, userId);
 
-            User user = (User) q.getSingleResult();
-            if (user == null)
+            //Query q = persistence.getEntityManager().createQuery("select u from sec$User u where u.id = ?1");
+            //q.setParameter(1, userId);
+            //User user = (User) q.getSingleResult();
+
+            if (((ExtUser)user).getCountry() == null)
             {
                 String StrCountry = CountryConfig.getCountry();
+                String StrCode = CountryConfig.getCode();
 
                 DataManager dataManager = AppBeans.get(DataManager.class);
                 Country newCountry = metadata.create(Country.class);
 
                 newCountry.setName(StrCountry);
+                newCountry.setCode(StrCode);
 
                 dataManager.commit(newCountry);
+
+                ExtUser newExtUser = metadata.create(ExtUser.class);
+                newExtUser.setCountry(newCountry);
+                newExtUser.setUser(user);
             }
 
             tx.commit();
@@ -103,8 +109,6 @@ public class CountryBean {
         {
             tx.end();
         }
-
-        return null;
     }
 
     /*public void GetCountry()

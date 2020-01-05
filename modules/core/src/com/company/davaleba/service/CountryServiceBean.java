@@ -10,8 +10,8 @@ import com.company.davaleba.entity.Country;
 import javax.inject.Inject;
 import java.util.UUID;
 
-@Service(GetCountryService.NAME)
-public class GetCountryServiceBean implements GetCountryService {
+@Service(CountryService.NAME)
+public class CountryServiceBean implements CountryService {
     @Inject
     private CountryBean Country;
 
@@ -20,5 +20,10 @@ public class GetCountryServiceBean implements GetCountryService {
     public Country GetCountry(UUID userId  )
     {
         return Country.GetCountry(userId);
+    }
+
+    public void SetCountry(UUID userId  )
+    {
+        Country.SetCountry(userId);
     }
 }

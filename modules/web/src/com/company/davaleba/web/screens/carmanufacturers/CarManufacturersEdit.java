@@ -1,7 +1,7 @@
 package com.company.davaleba.web.screens.carmanufacturers;
 
 import com.company.davaleba.entity.Country;
-import com.company.davaleba.service.GetCountryService;
+import com.company.davaleba.service.CountryService;
 import com.haulmont.cuba.gui.ScreenBuilders;
 import com.haulmont.cuba.gui.UiComponents;
 import com.haulmont.cuba.gui.app.security.user.browse.UserBrowser;
@@ -29,7 +29,7 @@ import java.util.UUID;
 @LoadDataBeforeShow
 public class CarManufacturersEdit extends StandardEditor<CarManufacturers> {
     @Inject
-    private GetCountryService getCountryService;
+    private CountryService getCountryService;
 
     @Inject
     private UiComponents uiComponents;

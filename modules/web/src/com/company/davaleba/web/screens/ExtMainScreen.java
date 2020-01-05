@@ -1,11 +1,13 @@
 package com.company.davaleba.web.screens;
 
-import com.company.davaleba.service.GetCountryService;
+import com.company.davaleba.service.CountryService;
+import com.company.davaleba.service.CountryService;
 import com.haulmont.cuba.core.global.*;
 import com.haulmont.cuba.gui.screen.Subscribe;
 import com.haulmont.cuba.gui.screen.UiController;
 import com.haulmont.cuba.gui.screen.UiDescriptor;
 import com.haulmont.cuba.security.entity.User;
+import com.haulmont.cuba.security.global.UserSession;
 import com.haulmont.cuba.web.app.main.MainScreen;
 import jdk.nashorn.internal.objects.annotations.Property;
 
@@ -20,7 +22,7 @@ import java.util.UUID;
 @UiDescriptor("ext-main-screen.xml")
 public class ExtMainScreen extends MainScreen {
 
-    //GetCountryService CountryService;
+    CountryService CountryService;
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
@@ -29,8 +31,11 @@ public class ExtMainScreen extends MainScreen {
     }
 
     @Subscribe
-    public void onInit(InitEvent event) {
-
+    public void onInit(InitEvent event)
+    {
+        UserSessionSource uss = AppBeans.get(UserSessionSource.class);
+        UUID id = uss.getUserSession().getUser().getUuid();
+        CountryService.SetCountry(id);
     }
 
     @Inject
