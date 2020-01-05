@@ -2,6 +2,7 @@ package com.company.davaleba.core;
 
 import com.company.davaleba.entity.Country;
 import com.company.davaleba.entity.ExtUser;
+import com.company.davaleba.service.CountryConfigServiceBean;
 import com.haulmont.chile.core.datatypes.Datatypes;
 import com.haulmont.chile.core.datatypes.FormatStrings;
 import com.haulmont.cuba.core.Persistence;
@@ -34,6 +35,8 @@ public class CountryBean {
 
     @Inject
     protected Configuration configuration;
+    @Inject
+    private Metadata metadata;
 
     //private final static Logger log = LoggerFactory.getLogger(LocaleHelper.class);
 
@@ -41,18 +44,57 @@ public class CountryBean {
     {
         Transaction tx = persistence.createTransaction();
         ExtUser extUser;
+        CountryConfigServiceBean CountryConfig = new CountryConfigServiceBean();
 
         try
         {
             Query q = persistence.getEntityManager().createQuery("select u from sec$User u where u.id = ?1");
             q.setParameter(1, userId);
-            List<User> list = q.getResultList();
+            //List<User> list = q2.getResultList();
 
             User user = (User) q.getSingleResult();
-            if (user != null)
-            {
+            if (user != null) {
                 extUser = (ExtUser) user;
                 return extUser.getCountry();
+            }
+            //else
+            //{
+            //    String = CountryConfig.getCountry();
+            //}
+
+
+            tx.commit();
+        }
+        finally
+        {
+            tx.end();
+        }
+
+        return null;
+    }
+
+    public Country SetCountry(UUID userId)
+    {
+        Transaction tx = persistence.createTransaction();
+        ExtUser extUser;
+        CountryConfigServiceBean CountryConfig = new CountryConfigServiceBean();
+
+        try
+        {
+            Query q = persistence.getEntityManager().createQuery("select u from sec$User u where u.id = ?1");
+            q.setParameter(1, userId);
+
+            User user = (User) q.getSingleResult();
+            if (user == null)
+            {
+                String StrCountry = CountryConfig.getCountry();
+
+                DataManager dataManager = AppBeans.get(DataManager.class);
+                Country newCountry = metadata.create(Country.class);
+
+                newCountry.setName(StrCountry);
+
+                dataManager.commit(newCountry);
             }
 
             tx.commit();

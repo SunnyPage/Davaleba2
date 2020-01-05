@@ -14,6 +14,7 @@
                 <entry key="davaleba_NumberOfDocumentsService"
                        value="com.company.davaleba.service.NumberOfDocumentsService"/>
                 <entry key="davaleba_GetCountryService" value="com.company.davaleba.service.GetCountryService"/>
+                <entry key="davaleba_CountryConfigService" value="com.company.davaleba.service.CountryConfigService"/>
             </map>
         </property>
     </bean>

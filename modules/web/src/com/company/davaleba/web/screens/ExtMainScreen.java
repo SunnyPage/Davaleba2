@@ -28,9 +28,16 @@ public class ExtMainScreen extends MainScreen {
 
     }
 
+    @Subscribe
+    public void onInit(InitEvent event) {
+
+    }
+
     @Inject
     protected UserSessionSource userSessionSource;
 
     @Inject
     protected PasswordEncryption passwordEncryption;
+
+
 }

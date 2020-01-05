@@ -37,8 +37,10 @@ public class CarManufacturersEdit extends StandardEditor<CarManufacturers> {
     @Inject
     private InstanceContainer<CarManufacturers> CarM;
 
+    @Inject
     @Named("CountryField")
-    private LookupPickerField Fieldcountry;
+    private LookupPickerField CountryField;
+
     @Inject
     private ScreenBuilders screenBuilders;
 
@@ -61,9 +63,7 @@ public class CarManufacturersEdit extends StandardEditor<CarManufacturers> {
 
             country = getCountryService.GetCountry(userId);
 
-            //Fieldcountry.setValueSource(country);
-            //Fieldcountry.setValue(country);
-            //event.getEntity().setCountry(country);
+            CountryField.setValue(country);
         }
     }
 }
