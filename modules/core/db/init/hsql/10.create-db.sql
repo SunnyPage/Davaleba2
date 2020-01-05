@@ -10,7 +10,6 @@ create table DAVALEBA_MODEL (
     DELETED_BY varchar(50),
     --
     NAME varchar(255),
-    CAR_ID varchar(36),
     --
     primary key (ID)
 )^
@@ -29,7 +28,6 @@ create table DAVALEBA_CAR_MANUFACTURING (
     NAME varchar(255) not null,
     MANUFACTURER_CODE varchar(255) not null,
     MODEL_ID varchar(36),
-    CAR_ID varchar(36),
     --
     primary key (ID)
 )^
@@ -84,9 +82,11 @@ create table DAVALEBA_CAR (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
+    CAR_MANUFACTURERS_ID varchar(36),
+    CAR_MODEL_ID varchar(36),
     NAME varchar(255),
     YEAR_OF_ISSUE varchar(255),
-    CAR_COST varchar(255),
+    CAR_COST decimal(19, 2),
     APPLICATION_FOR_THE_PURCHASE_OF_A_CAR_ID varchar(36),
     --
     primary key (ID)
@@ -104,47 +104,11 @@ create table DAVALEBA_COLOUR (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
-    CODE varchar(255),
+    CODE varchar(255) not null,
     --
     primary key (ID)
 )^
 -- end DAVALEBA_COLOUR
--- begin DAVALEBA_NATURAL_PERSON
-create table DAVALEBA_NATURAL_PERSON (
-    ID varchar(36) not null,
-    VERSION integer not null,
-    CREATE_TS timestamp,
-    CREATED_BY varchar(50),
-    UPDATE_TS timestamp,
-    UPDATED_BY varchar(50),
-    DELETE_TS timestamp,
-    DELETED_BY varchar(50),
-    --
-    FIRST_NAME_AND_LAST_NAME varchar(255),
-    APPLICATION_FOR_THE_PURCHASE_OF_A_CAR_ID varchar(36),
-    TELEPHONE varchar(255),
-    --
-    primary key (ID)
-)^
--- end DAVALEBA_NATURAL_PERSON
--- begin DAVALEBA_LEGAL_ENTITY
-create table DAVALEBA_LEGAL_ENTITY (
-    ID varchar(36) not null,
-    VERSION integer not null,
-    CREATE_TS timestamp,
-    CREATED_BY varchar(50),
-    UPDATE_TS timestamp,
-    UPDATED_BY varchar(50),
-    DELETE_TS timestamp,
-    DELETED_BY varchar(50),
-    --
-    NAME varchar(255),
-    IDENTIFICATION_NUMBER_AND_ADDRESS longvarchar,
-    TELEPHONE varchar(255),
-    --
-    primary key (ID)
-)^
--- end DAVALEBA_LEGAL_ENTITY
 -- begin DAVALEBA_COUNTRY
 create table DAVALEBA_COUNTRY (
     ID varchar(36) not null,
@@ -164,8 +128,8 @@ create table DAVALEBA_COUNTRY (
     primary key (ID)
 )^
 -- end DAVALEBA_COUNTRY
--- begin DAVALEBA_ASSEMBLY
-create table DAVALEBA_ASSEMBLY (
+-- begin DAVALEBA_CHARACTERISTICS
+create table DAVALEBA_CHARACTERISTICS (
     ID varchar(36) not null,
     VERSION integer not null,
     CREATE_TS timestamp,
@@ -175,14 +139,16 @@ create table DAVALEBA_ASSEMBLY (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    PRICE decimal(19, 2),
+    NAME varchar(255),
+    PRICE varchar(255),
     TYPE_OF_CAR varchar(50),
     NOTE varchar(255),
+    CAR_MODEL_ID varchar(36),
     CAR_ID varchar(36),
     --
     primary key (ID)
 )^
--- end DAVALEBA_ASSEMBLY
+-- end DAVALEBA_CHARACTERISTICS
 -- begin SEC_USER
 alter table SEC_USER add column COUNTRY_ID varchar(36) ^
 alter table SEC_USER add column USER_ID varchar(36) ^

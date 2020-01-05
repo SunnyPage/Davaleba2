@@ -29,7 +29,7 @@ import java.util.UUID;
 @LoadDataBeforeShow
 public class CarManufacturersEdit extends StandardEditor<CarManufacturers> {
     @Inject
-    private CountryService getCountryService;
+    private CountryService CountryService;
 
     @Inject
     private UiComponents uiComponents;
@@ -55,15 +55,15 @@ public class CarManufacturersEdit extends StandardEditor<CarManufacturers> {
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<CarManufacturers> event) {
-        App app = App.getInstance();
+        /*App app = App.getInstance();
         Country country;
 
         if (App.getInstance().getConnection().getSession() != null) {
             UUID userId = App.getInstance().getConnection().getSession().getUser().getId();
 
-            country = getCountryService.GetCountry(userId);
+            country = CountryService.GetCountry(userId);
 
             CountryField.setValue(country);
-        }
+        }*/
     }
 }

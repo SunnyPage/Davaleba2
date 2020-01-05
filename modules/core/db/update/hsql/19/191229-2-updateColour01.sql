@@ -1,1 +1,0 @@
-create unique index IDX_DAVALEBA_COLOUR_UNIQ_CODE on DAVALEBA_COLOUR (CODE) ;

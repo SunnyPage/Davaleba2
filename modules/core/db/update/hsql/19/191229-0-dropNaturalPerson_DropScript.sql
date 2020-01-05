@@ -1,1 +1,0 @@
-drop table DAVALEBA_NATURAL_PERSON__U39144 if exists cascade ;
