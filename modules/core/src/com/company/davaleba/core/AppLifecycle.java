@@ -1,6 +1,15 @@
 package com.company.davaleba.core;
 
+import com.company.davaleba.entity.Country;
+import com.company.davaleba.entity.ExtUser;
 import com.haulmont.cuba.core.EntityManager;
+import com.haulmont.cuba.core.Persistence;
+import com.haulmont.cuba.core.Query;
+import com.haulmont.cuba.core.Transaction;
+import com.haulmont.cuba.core.global.AppBeans;
+import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.core.global.UserSessionSource;
 import com.haulmont.cuba.core.listener.BeforeUpdateEntityListener;
 import com.haulmont.cuba.core.sys.AppContext;
 import com.haulmont.cuba.core.sys.listener.EntityListenerManager;
@@ -14,6 +23,8 @@ import javax.inject.Inject;
 public class AppLifecycle implements AppContext.Listener {
     @Inject
     private EntityListenerManager entityListenerManager;
+    @Inject
+    private Metadata metadata;
 
     public AppLifecycle()
     {
@@ -29,15 +40,15 @@ public class AppLifecycle implements AppContext.Listener {
     @Component("sample_UserEntityListener")
     public class UserEntityListener implements BeforeUpdateEntityListener<User>
     {
-        //@Inject
-        //private Persistence persistence;
+        @Inject
+        private Persistence persistence;
 
         @Override
         public void onBeforeUpdate(User user, EntityManager entityManager)
         {
-            /*Transaction tx = persistence.createTransaction();
+            Transaction tx = persistence.createTransaction();
             ExtUser extUser;
-            CountryConfig CountryConfig = new CountryConfig();
+            CountryConfigBean CountryConfig = new CountryConfigBean();
 
             try
             {
@@ -72,7 +83,7 @@ public class AppLifecycle implements AppContext.Listener {
             finally
             {
                 tx.end();
-            }*/
+            }
         }
     }
 
