@@ -33,9 +33,9 @@ public class ExtMainScreen extends MainScreen {
     @Subscribe
     public void onInit(InitEvent event)
     {
-        UserSessionSource uss = AppBeans.get(UserSessionSource.class);
-        UUID id = uss.getUserSession().getUser().getUuid();
-        CountryService.SetCountry(id);
+        //UserSessionSource uss = AppBeans.get(UserSessionSource.class);
+        //UUID id = uss.getUserSession().getUser().getUuid();
+        //CountryService.SetCountry(id);
     }
 
     @Inject
